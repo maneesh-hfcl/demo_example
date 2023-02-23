@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Login page</title>
+        <script>
+            var url = "http://localhost:5087"
+            function fn_onload(){
+//                alert('on load called')
+            }
+
+            async function fetchData(){
+                let response = await fetch(url+"/home");
+                let data = await response.json();
+                console.log(data)
+            }
+
+            async function postData(){
+                var data  = {
+                    "username": document.getElementById('tusername').value,
+                    "password": document.getElementById('tpassword').value
+                } 
+                console.log(JSON.stringify(data))
+                const response = await fetch(url+"/login",{
+                    method:'POST',
+                    body:JSON.stringify(data),                         
+                    headers: {
+                        "Content-type": "application/json"
+                    }
+                });
+//                let respdata = response.json();
+//                console.log(respdata);
+            }
+        </script>
+
+    </head>
+    <body onload="fn_onload()">
+        <h1>
+            Login
+        </h1>
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" name="tusername" id="tusername" /></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="text" name="tPassword" id="tpassword" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" value="Get" onclick="fetchData()" />
+                    <input type="button" value="Post" onclick="postData()" />
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

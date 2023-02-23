@@ -1,0 +1,11 @@
+GET http://localhost:5087/home HTTP/1.1
+###
+
+POST http://localhost:5087/login HTTP/1.1
+content-type: application/json
+
+{
+    "username":"john",
+    "password": "123456"
+}
+
